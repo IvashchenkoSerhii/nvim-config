@@ -8,7 +8,7 @@ Add current folder to PATH:
 ```bash
 $ echo 'export PATH=$HOME/APPS/neovim:${PATH}' >> ~/.bashrc
 ```
-Update nvim:
+Update nvim script:
 ```bash
 $ nvim-update
 ```
