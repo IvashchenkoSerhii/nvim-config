@@ -14,7 +14,7 @@ chmod +x nvim.appimage
 echo "create nvim link"
 echo ""
 
-ln -sf nvim.appimage nvim
+ln -s nvim.appimage nvim
 
 echo ""
 echo `nvim -v`
