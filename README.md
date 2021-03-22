@@ -2,6 +2,7 @@
 
 ## Install | Update nvim
 [Install zsync2](https://github.com/AppImage/zsync2)
+
 [Nvim releases](https://github.com/neovim/neovim/releases)
 
 Add current folder to PATH:
