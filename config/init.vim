@@ -230,8 +230,12 @@ nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 " write cmd to cmd line and auto press Enter
 nnoremap <leader>cr :CocRestart <CR>
+nnoremap <leader>cp :CocCommand pyright.restartserver <CR>
 
 " FUGITIVE
+command Grm :G rebase -i master
+command Gpf :G push -f
+
 " right column. gj?
 nmap <leader>gh :diffget //3<CR>
 " left column. gf?
