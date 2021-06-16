@@ -42,7 +42,7 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 let g:loaded_python_provider = 0  " disable python2
 " pyenv install 3.8.1; pyenv virtualenv 3.8.1 nvim3; pyenv activate nvim3
 " python -m pip install pynvim flake8 jedi
-let g:python3_host_prog = '$HOME/.pyenv/versions/nvim3/bin/python'
+let g:python3_host_prog = '~/.pyenv/versions/nvim3/bin/python'
 
 """"""""""""""""
 
@@ -234,6 +234,7 @@ nnoremap <leader>cp :CocCommand pyright.restartserver <CR>
 
 " FUGITIVE
 command Grm :G rebase -i master
+command Grh :G rebase -i HEAD~2
 command Gpf :G push -f
 
 " right column. gj?
@@ -241,7 +242,7 @@ nmap <leader>gh :diffget //3<CR>
 " left column. gf?
 nmap <leader>gu :diffget //2<CR>
 
-nmap <leader>gs :G<CR>
+nmap <leader>gs :G<CR><C-w>10_
 " ----------
 
 
