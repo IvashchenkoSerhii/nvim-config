@@ -236,6 +236,7 @@ nnoremap <leader>cp :CocCommand pyright.restartserver <CR>
 command Grm :G rebase -i master
 command Grh :G rebase -i HEAD~2
 command Gpf :G push -f
+command Gpm :G checkout master | :G pull | :G checkout -
 
 " right column. gj?
 nmap <leader>gh :diffget //3<CR>
@@ -244,6 +245,10 @@ nmap <leader>gu :diffget //2<CR>
 
 nmap <leader>gs :G<CR><C-w>10_
 " ----------
+"
+" https://vim.fandom.com/wiki/Copy_filename_to_clipboard
+nmap <leader>cs :let @+=expand("%")<CR>
+" nmap <leader>cl :let @*=expand("%:p")<CR>
 
 
 fun! TrimWhitespace()
