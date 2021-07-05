@@ -175,6 +175,7 @@ nnoremap <Leader>fr :FRg<CR>
 nnoremap \ :FAg<CR>
 
 nnoremap <C-p> :FGFiles<CR>
+nnoremap <A-p> :FFiles<CR>
 
 " ----------
 
@@ -211,7 +212,7 @@ inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <C-space> coc#refresh()
 
 " COC
-let g:coc_global_extensions = ['coc-pyright', 'coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-clangd']
+let g:coc_global_extensions = ['coc-pyright', 'coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-clangd', 'coc-rls']
 let g:coc_disable_startup_warning = 1 " warning on nvim <0.5
 
 nmap <leader>gd <Plug>(coc-definition)
