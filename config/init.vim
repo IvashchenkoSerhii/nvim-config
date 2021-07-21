@@ -238,6 +238,7 @@ command Grm :G rebase -i master
 command Grh :G rebase -i HEAD~2
 command Gpf :G push -f
 command Gpm :G checkout master | :G pull | :G checkout -
+command Gpups :G -c push.default=current push
 
 " right column. gj?
 nmap <leader>gh :diffget //3<CR>
