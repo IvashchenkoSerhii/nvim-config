@@ -198,6 +198,23 @@ nnoremap <leader>vwm :colorscheme gruvbox<bar>:set background=dark<CR>
 vnoremap X "_d
 inoremap <C-c> <esc>
 
+" ###
+" ThePrimeagen https://www.youtube.com/watch?v=hSHATqh8svM
+" Keeping it centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+" Undo break points
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
+inoremap : :<c-g>u
+inoremap <CR> <CR><c-g>u
+
+" ###
+
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
