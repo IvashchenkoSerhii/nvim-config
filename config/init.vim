@@ -203,7 +203,7 @@ inoremap <C-c> <esc>
 " Keeping it centered
 nnoremap n nzzzv
 nnoremap N Nzzzv
-nnoremap J mzJ`z
+" nnoremap J mzJ`z
 
 " Undo break points
 inoremap , ,<c-g>u
@@ -282,3 +282,6 @@ augroup highlight_yank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 200})
 augroup END
+
+" https://github.com/neoclide/coc.nvim/wiki/Using-workspaceFolders
+autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
