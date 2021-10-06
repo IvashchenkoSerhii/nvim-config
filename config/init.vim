@@ -130,7 +130,16 @@ nnoremap <C-H> <C-W><C-H>
 
 " TELESCOPE
 lua << EOF
+local actions = require("telescope.actions")
+
 require('telescope').setup {
+    defaults = {
+        mappings = {
+            i = {
+                ["<esc>"] = actions.close,
+            },
+        },
+    },
     extensions = {
         fzy_native = {
             override_generic_sorter = true,
@@ -138,6 +147,7 @@ require('telescope').setup {
         }
     }
 }
+
 require('telescope').load_extension('fzy_native')
 EOF
 
@@ -154,7 +164,6 @@ nnoremap <leader>ts <cmd>Telescope grep_string<cr>
 " FZF
 let g:fzf_command_prefix = 'F'
 nnoremap <Leader>ff :FGFiles<CR>
-nnoremap <Leader>fg :FAg<CR>
 nnoremap <Leader>fb :FBuffers<CR>
 nnoremap <Leader>fh :FHelptags<CR>
 nnoremap <Leader>fm :FMaps<CR>
@@ -164,8 +173,6 @@ nnoremap <Leader>fr :FRg<CR>
 nnoremap \ :FRg
 
 nnoremap <C-p> :FGFiles<CR>
-nnoremap <A-p> :FFiles<CR>
-
 " ----------
 
 
