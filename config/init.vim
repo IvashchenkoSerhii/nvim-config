@@ -59,7 +59,7 @@ Plug 'sheerun/vim-polyglot'
 " FZF
 " install additional:
 " for syntax highlight preview: https://github.com/sharkdp/bat
-" for Ag: https://github.com/ggreer/the_silver_searcher
+" for Rg: https://github.com/BurntSushi/ripgrep
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
@@ -79,8 +79,8 @@ Plug 'tpope/vim-commentary' " type: `gcc` for comment line
 Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
 
 
-Plug 'unblevable/quick-scope'  " left-right jumps highlight
-Plug 'easymotion/vim-easymotion'
+Plug 'phaazon/hop.nvim'
+
 Plug 'tpope/vim-surround'
 
 Plug 'wakatime/vim-wakatime'
@@ -93,18 +93,6 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 " --
 
 call plug#end()
-
-
-" Quick Scope
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-let g:qs_max_chars=150
-augroup qs_colors
-  autocmd!
-  autocmd ColorScheme * highlight QuickScopePrimary guifg='#afff5f' gui=underline ctermfg=155 cterm=underline
-  autocmd ColorScheme * highlight QuickScopeSecondary guifg='#5fffff' gui=underline ctermfg=81 cterm=underline
-augroup END
-" ------------
-
 
 
 colorscheme gruvbox
@@ -172,7 +160,8 @@ nnoremap <Leader>fh :FHelptags<CR>
 nnoremap <Leader>fm :FMaps<CR>
 nnoremap <Leader>fr :FRg<CR>
 
-nnoremap \ :FAg<CR>
+" Rg ripgrep (rg) search
+nnoremap \ :FRg
 
 nnoremap <C-p> :FGFiles<CR>
 nnoremap <A-p> :FFiles<CR>
@@ -215,6 +204,18 @@ inoremap <CR> <CR><c-g>u
 
 " ###
 
+" hop (like easymotion)
+
+lua << EOF
+require'hop'.setup()
+EOF
+
+map <leader>/ :HopWord<CR>
+nmap <leader>/ :HopWord<CR>
+nmap f :HopChar1<CR>
+
+" ###
+
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
@@ -243,7 +244,7 @@ nmap <leader>g] <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gp <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>gn <Plug>(coc-diagnostic-next)
 
-" required https://github.com/BurntSushi/ripgrep#installation
+" required Rg https://github.com/BurntSushi/ripgrep#installation
 nnoremap <leader>prw :CocSearch <C-R>=expand("<cword>")<CR><CR>
 
 " write cmd to cmd line and auto press Enter
@@ -285,3 +286,7 @@ augroup END
 
 " https://github.com/neoclide/coc.nvim/wiki/Using-workspaceFolders
 autocmd FileType python let b:coc_root_patterns = ['.git', '.env']
+
+" https://vi.stackexchange.com/a/29571
+inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1, 3)\<cr>" : "\<Right>"
+inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0, 3)\<cr>" : "\<Left>"

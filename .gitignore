@@ -1,3 +1,4 @@
 *.appimage
 *.zs-old
+*.part
 nvim
