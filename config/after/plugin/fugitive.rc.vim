@@ -5,9 +5,11 @@ command Grh :G rebase -i HEAD~2
 command Gpf :G push -f
 command Gpm :G checkout master | :G pull | :G checkout -
 
-" right column. gj?
-nmap <leader>gh :diffget //3<CR>
-" left column. gf?
-nmap <leader>gu :diffget //2<CR>
+" open git diff window - <leader>dv
+" close diff window - C-w + C-o
+" right column.
+nmap <leader>gj :diffget //3<CR>
+" left column.
+nmap <leader>gf :diffget //2<CR>
 
 nmap <leader>gs :G<CR><C-w>10_
