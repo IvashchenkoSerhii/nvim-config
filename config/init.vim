@@ -118,7 +118,7 @@ autocmd BufWritePre * :call TrimWhitespace()
 " v0.5 required
 augroup highlight_yank
     autocmd!
-    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 200})
+    autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 300})
 augroup END
 
 
@@ -135,5 +135,16 @@ nnoremap <Leader>fr :FRg<CR>
 nnoremap \ :FRg<Space>
 
 nnoremap <C-p> :FGFiles<CR>
+
+
+" https://github.com/neoclide/coc.nvim/issues/869#issuecomment-501323697
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 " #####
