@@ -1,5 +1,6 @@
 if !exists('g:loaded_fugitive') | finish | endif
 
+command Gcm :G checkout master
 command Grm :G rebase -i master
 command Grh :G rebase -i HEAD~2
 command Gpf :G push -f
