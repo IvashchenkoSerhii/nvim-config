@@ -1,4 +1,4 @@
-let g:coc_global_extensions = ['coc-pyright', 'coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-clangd', 'coc-rls']
+let g:coc_global_extensions = ['coc-pyright', 'coc-tsserver', 'coc-json', 'coc-html', 'coc-css', 'coc-clangd', 'coc-rust-analyzer']
 let g:coc_disable_startup_warning = 1 " warning on nvim <0.5
 
 nmap gd <Plug>(coc-definition)
