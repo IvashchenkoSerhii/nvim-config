@@ -1,13 +1,12 @@
 # Nvim Config
 
-## Install | Update nvim
-[Install zsync2](https://github.com/AppImage/zsync2)
+## Install/Update nvim
 
-[Nvim releases](https://github.com/neovim/neovim/releases)
+[Nvim](https://github.com/neovim/neovim/wiki/Installing-Neovim)
 
 Add current folder to PATH:
 ```bash
-$ echo 'export PATH=$HOME/APPS/neovim:${PATH}' >> ~/.bashrc
+$ echo 'export PATH=$HOME/APPS/nvim-config:${PATH}' >> ~/.zshrc
 ```
 Update nvim script:
 ```bash
@@ -29,6 +28,5 @@ pip install pynvim flake8 jedi pyflakes pycodestyle pydocstyle pylint
 ## Config
 Create links:
 ```
-ln -sf $PWD/config/init.vim $HOME/.config/nvim/init.vim
-ln -sf $PWD/config/coc-settings.json $HOME/.config/nvim/coc-settings.json
+ln -sf $PWD/config $HOME/.config/nvim
 ```

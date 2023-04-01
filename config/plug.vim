@@ -1,20 +1,37 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'sheerun/vim-polyglot'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" LSP
-" Plug 'neovim/nvim-lspconfig'
-" Plug 'hrsh7th/nvim-cmp'
-" Plug 'hrsh7th/cmp-nvim-lsp'
-" Plug 'saadparwaiz1/cmp_luasnip'
-" Plug 'L3MON4D3/LuaSnip'
-" --
+" LSP Support
+Plug 'neovim/nvim-lspconfig'                           " Required
+Plug 'williamboman/mason.nvim', {'do': ':MasonUpdate'} " Optional
+Plug 'williamboman/mason-lspconfig.nvim'               " Optional
 
-" Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+" Autocompletion
+Plug 'hrsh7th/nvim-cmp'     " Required
+Plug 'hrsh7th/cmp-nvim-lsp' " Required
+Plug 'L3MON4D3/LuaSnip'     " Required
+
+Plug 'VonHeikemen/lsp-zero.nvim', {'branch': 'v2.x'}
+
+" End of LSP Support
+
+Plug 'github/copilot.vim'
+
+" Plug 'nvim-tree/nvim-web-devicons'
+" Plug 'folke/trouble.nvim'
+
+" better quickfix
+Plug 'kevinhwang91/nvim-bqf'
+
+Plug 'folke/which-key.nvim'
+
+" Plug 'sheerun/vim-polyglot'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " git integration
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 
 " FZF
 " install additional:
@@ -24,33 +41,36 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 " color scheme
-Plug 'morhetz/gruvbox'
+
+Plug 'morhetz/gruvbox' " classic
+" Plug 'ellisonleao/gruvbox.nvim'  " lua clone
+Plug 'rafi/awesome-vim-colorschemes'
 " --
 
 " footer bar
 Plug 'vim-airline/vim-airline'
-" Plug 'flazz/vim-colorschemes'
 
-" git symbols
-Plug 'airblade/vim-gitgutter'
 
 " type: `gcc` for comment line
-Plug 'tpope/vim-commentary'
+" Plug 'tpope/vim-commentary'
+" type: `gc` for comment line
+Plug 'numToStr/Comment.nvim'
 
-" jump game. :UpdateRemotePlugins after install. To run :VimBeGood
-Plug 'ThePrimeagen/vim-be-good', {'do': './install.sh'}
+Plug 'ThePrimeagen/harpoon'
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
 
 Plug 'phaazon/hop.nvim'
 
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-abolish'
 
 Plug 'wakatime/vim-wakatime'
 
 " telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-telescope/telescope-fzy-native.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
+" Plug 'nvim-telescope/telescope-fzy-native.nvim'
 " --
 
 call plug#end()

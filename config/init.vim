@@ -3,11 +3,13 @@ syntax on
 set guicursor=
 set noshowmatch
 set relativenumber
-set nohlsearch
 set hidden
 set noerrorbells
-set tabstop=4 softtabstop=4
+
+set tabstop=4
+set softtabstop=4
 set shiftwidth=4
+
 set expandtab
 set smartindent
 set nu
@@ -15,22 +17,30 @@ set nowrap
 set smartcase
 set noswapfile
 set nobackup
+
+set nohlsearch
 set incsearch
+
 set termguicolors
 set scrolloff=8
 
-" Give more space for displaying messages.
-set cmdheight=2
+set signcolumn=number
+
+" set cmdheight=0
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
 set updatetime=50
 
+" for which-key plugin
+set timeoutlen=500
+
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
 set pyx=3 " nvim pythonx
-set clipboard+=unnamedplus " System clipboard, xclip required
+" set clipboard+=unnamedplus " System clipboard, xclip required
+set clipboard+=unnamed
 
 set lazyredraw
 
@@ -55,22 +65,29 @@ let g:python3_host_prog = '~/.pyenv/versions/nvim3/bin/python'
 
 """"""""""""""""
 
+let loaded_matchparen = 1
+let mapleader = " "
+
 runtime plug.vim
 
-colorscheme gruvbox
+" colorscheme gruvbox
+colorscheme sonokai
+
+" set background=light
 set background=dark
 
 if executable('rg')
     let g:rg_derive_root='true'
 endif
 
-let loaded_matchparen = 1
-let mapleader = " "
 
 "split navigations
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
+" C-L conflicting in netrw, so set it to C-T
+nmap <C-T> <Plug>NetrwRefresh
+" --
 nnoremap <C-H> <C-W><C-H>
 
 nnoremap <Leader>+ :vertical resize +5<CR>
@@ -80,9 +97,11 @@ nnoremap <Leader><CR> :so ~/.config/nvim/init.vim<CR>
 
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-nnoremap <leader>vwm :colorscheme gruvbox<bar>:set background=dark<CR>
 vnoremap X "_d
 inoremap <C-c> <esc>
+
+" delete highlighted text to void register and paste text from clipboard
+xnoremap <leader>p "_dP
 
 " ###
 " ThePrimeagen https://www.youtube.com/watch?v=hSHATqh8svM
@@ -99,12 +118,13 @@ inoremap ? ?<c-g>u
 inoremap : :<c-g>u
 inoremap <CR> <CR><c-g>u
 
-" ###
 
 "
 " https://vim.fandom.com/wiki/Copy_filename_to_clipboard
-nmap <leader>cs :let @+=expand("%")<CR>
-" nmap <leader>cl :let @*=expand("%:p")<CR>
+" https://stackoverflow.com/a/15020405
+" Copy to clipboard current filepath and '::{current_word}' only if
+" current_word exists
+nmap <leader>cs :let @+ = expand("%") . (getline('.')[col('.')-1] =~# '\k' ? '::' : '') . expand('<cword>')<CR>
 
 
 fun! TrimWhitespace()
@@ -115,36 +135,24 @@ endfun
 
 autocmd BufWritePre * :call TrimWhitespace()
 
-" v0.5 required
 augroup highlight_yank
     autocmd!
     autocmd TextYankPost * silent! lua require'vim.highlight'.on_yank({timeout = 300})
 augroup END
 
 
-" FZF
 let g:fzf_command_prefix = 'F'
 
-nnoremap <Leader>ff :FGFiles<CR>
-nnoremap <Leader>fb :FBuffers<CR>
-nnoremap <Leader>fh :FHelptags<CR>
-nnoremap <Leader>fm :FMaps<CR>
-nnoremap <Leader>fr :FRg<CR>
+lua << EOF
+-- https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua
 
-" Rg ripgrep (rg) search
-nnoremap \ :FRg<Space>
+-- Diagnostic keymaps
+-- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+-- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setqflist, { desc = "Open diagnostics quickfix list" })
 
-nnoremap <C-p> :FGFiles<CR>
+EOF
 
-
-" https://github.com/neoclide/coc.nvim/issues/869#issuecomment-501323697
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
-
-" #####
+"-- close quickfix
+nnoremap <Leader>x :cclose<CR>

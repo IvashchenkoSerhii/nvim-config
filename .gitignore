@@ -1,4 +1,2 @@
-*.appimage
-*.zs-old
-*.part
-nvim
+.DS_Store
+.python-version
